@@ -11,7 +11,7 @@ build_script:
   - ps: .\warp-packer.exe --arch windows-x64 --input_dir Installer/bin/Release --exec Installer.exe --output Installer.exe
   - cd C:\
   - dir /s EDITBIN.EXE
-  - \"C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\editbin.exe\" /subsystem:windows Installer.exe
+  - \"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\editbin.exe\" /subsystem:windows Installer.exe
 artifacts:
   - path: Installer.exe
     name: Installer
