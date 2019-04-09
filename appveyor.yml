@@ -9,7 +9,7 @@ build_script:
   - ps: rm Installer/bin/Release/*.pdb
   - ps: Invoke-WebRequest -Uri "https://github.com/dgiagio/warp/releases/download/v0.3.0/windows-x64.warp-packer.exe" -OutFile warp-packer.exe
   - ps: .\warp-packer.exe --arch windows-x64 --input_dir Installer/bin/Release --exec Installer.exe --output Installer.exe
-  - '\"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\editbin.exe\" /subsystem:windows Installer.exe'
+  - ps: '& \"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\editbin.exe\" /subsystem:windows Installer.exe'
 artifacts:
   - path: Installer.exe
     name: Installer
