@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Installer.Converters"
+                    xmlns:local="clr-namespace:Installer">
+    <BitmapImage x:Key="LogoSource" UriSource="Resources/PMD-SHIFT-OUTLINE-GRADIENT.png" />
+    <BitmapImage x:Key="HeaderSource" UriSource="Resources/Header.png" />
+    <BitmapImage x:Key="DiscordLogoSource" UriSource="Resources/Discord-Logo-White.png" />
+
+    <converters:InverseConverter x:Key="inverseConverter" />
+</ResourceDictionary>

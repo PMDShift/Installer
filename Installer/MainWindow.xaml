@@ -1,0 +1,105 @@
+﻿<Window x:Class="Installer.MainWindow" 
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Installer"
+        mc:Ignorable="d"
+        Background="#464646"
+        ResizeMode="CanMinimize"
+        Title="PMD: Shift! Setup" Height="550" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Image Source="{StaticResource HeaderSource}" Height="100" />
+            <TextBlock Text="Welcome to Pokémon Mystery Dungeon: Shift!" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="24">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="10" />
+                </TextBlock.Effect>
+            </TextBlock>
+        </Grid>
+        <TextBlock Margin="10 0 10 0" Grid.Row="1" Padding="10" Foreground="White" TextWrapping="WrapWithOverflow">
+            Thank you for downloading the Pokémon Mystery Dungeon: Shift! installer! To begin playing, please choose from the options below. If you need additional support, please join our Discord server. An invite is available below. We look forward to seeing you!
+        </TextBlock> 
+        <GroupBox Margin="10 0 10 0" Grid.Row="2" Header="Components" Padding="10" IsEnabled="{Binding IsInstalling, Converter={StaticResource inverseConverter}}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" Content="Client" ToolTip="The main game client." IsChecked="{Binding GameClient}" />
+                <CheckBox Grid.Column="1" Content="Legacy Client" ToolTip="An older client used for some game editors. This should only be used by advanced users." IsChecked="{Binding LegacyGameClient}" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Margin="10 10 10 0" Grid.Row="3" Header="Installation Settings" IsEnabled="{Binding IsInstalling, Converter={StaticResource inverseConverter}}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Installation Directory" />
+                    <Label Grid.Column="1" HorizontalAlignment="Right" Foreground="Red" Content="{Binding InstallationDirectoryError}" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" IsReadOnly="True" Text="{Binding InstallationDirectory}" />
+                    <Button Grid.Column="1" Content="..." Command="{Binding ChooseInstallationDirectoryCommand}" />
+                </Grid>
+                <CheckBox Margin="0 5 0 0" Grid.Row="2" Content="Add to Start Menu" IsChecked="{Binding AddToStartMenu}" />
+                <CheckBox Margin="0 5 0 0" Grid.Row="3" Content="Add to Desktop" IsChecked="{Binding AddToDesktop}" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="4" Header="Installation Details" Margin="10 10 10 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="{Binding InstallationStatus}" />
+                <ProgressBar Grid.Row="1" Minimum="0" Maximum="100" Value="{Binding InstallationProgress}" />
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Row="5" Margin="10 10 10 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{StaticResource DiscordLogoSource}" Height="25" />
+                <TextBox Grid.Column="1" Text="https://discord.gg/7muGJe9" IsReadOnly="True" />
+            </Grid>
+            <Grid Grid.Column="1" HorizontalAlignment="Right">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Content="Exit" Margin="10 0 0 0" Command="{Binding ExitCommand}" IsEnabled="{Binding IsInstalling, Converter={StaticResource inverseConverter}}" />
+                    <Button Grid.Column="1" Content="Install" Margin="10 0 0 0" Command="{Binding InstallCommand}" IsEnabled="{Binding CanStartInstallation}" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
