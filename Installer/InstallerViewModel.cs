@@ -120,7 +120,7 @@ namespace Installer
             this.AddToStartMenu = true;
             this.AddToDesktop = true;
 
-            InstallationDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "PMD Shift");
+            InstallationDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PMD Shift");
 
             ExitCommand = new Command(ExitCommandCallback);
             InstallCommand = new Command(InstallCommandCallback);
