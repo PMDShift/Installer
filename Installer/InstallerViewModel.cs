@@ -71,6 +71,15 @@ namespace Installer
             }
         }
 
+        bool editors;
+        public bool Editors {
+            get => editors;
+            set {
+                editors = value;
+                RaisePropertyChanged();
+            }
+        }
+
         bool addToStartMenu;
         public bool AddToStartMenu {
             get { return addToStartMenu; }
@@ -116,6 +125,7 @@ namespace Installer
 
         public InstallerViewModel() {
             this.GameClient = true;
+            this.Editors = true;
 
             this.AddToStartMenu = true;
             this.AddToDesktop = true;
@@ -156,6 +166,24 @@ namespace Installer
 
             if (GameClient) {
                 var group = new InstallationStepGroup(ComponentDefinitions.Client);
+
+                group.Steps.Add(new DownloadPackageStep());
+                group.Steps.Add(new ExtractStep());
+
+                if (AddToDesktop) {
+                    group.Steps.Add(new CreateShortcutStep(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)));
+                }
+                if (AddToStartMenu) {
+                    group.Steps.Add(new CreateShortcutStep(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu)));
+                }
+
+                group.Steps.Add(new CleanupStep());
+
+                installationSteps.Add(group);
+            }
+
+            if (Editors) {
+                var group = new InstallationStepGroup(ComponentDefinitions.Editor);
 
                 group.Steps.Add(new DownloadPackageStep());
                 group.Steps.Add(new ExtractStep());

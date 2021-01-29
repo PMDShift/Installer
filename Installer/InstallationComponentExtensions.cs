@@ -12,6 +12,8 @@ namespace Installer
             switch (component) {
                 case InstallationComponent.Client:
                     return "Client";
+                case InstallationComponent.Editor:
+                    return "Editor";
                 case InstallationComponent.LegacyClient:
                     return "LegacyClient";
                 default:

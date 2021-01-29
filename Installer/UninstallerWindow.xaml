@@ -22,10 +22,12 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <CheckBox Grid.Column="0" Content="Client" ToolTip="The main game client." IsChecked="{Binding GameClient}" IsEnabled="{Binding GameClientEnabled}" />
-                <CheckBox Grid.Column="1" Content="Legacy Client" ToolTip="An older client used for some game editors. This should only be used by advanced users." IsChecked="{Binding LegacyGameClient}" IsEnabled="{Binding LegacyGameClientEnabled}" />
+                <CheckBox Grid.Column="1" Content="Editor" ToolTip="External editor suite." IsChecked="{Binding Editor}" IsEnabled="{Binding EditorEnabled}" />
+                <CheckBox Grid.Column="2" Content="Legacy Client" ToolTip="An older client used for some game editors. This should only be used by advanced users." IsChecked="{Binding LegacyGameClient}" IsEnabled="{Binding LegacyGameClientEnabled}" />
             </Grid>
         </GroupBox>
         <Grid Grid.Row="5" Margin="10 10 10 10">

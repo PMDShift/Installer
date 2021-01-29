@@ -35,6 +35,12 @@ namespace Installer
                         packageName = "PMDShift-C-Windows.zip";
                     }
                     break;
+                case InstallationComponent.Editor: {
+                        owner = "PMDShift";
+                        repository = "CrowClient";
+                        packageName = "PMDShift-Editors-Windows.zip";
+                    }
+                    break;
                 case InstallationComponent.LegacyClient: {
                         owner = "PMDShift";
                         repository = "Client";

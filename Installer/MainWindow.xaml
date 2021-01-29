@@ -33,10 +33,12 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <CheckBox Grid.Column="0" Content="Client" ToolTip="The main game client." IsChecked="{Binding GameClient}" />
-                <CheckBox Grid.Column="1" Content="Legacy Client" ToolTip="An older client used for some game editors. This should only be used by advanced users." IsChecked="{Binding LegacyGameClient}" />
+                <CheckBox Grid.Column="1" Content="Editor" ToolTip="External editor suite." IsChecked="{Binding Editors}" />
+                <CheckBox Grid.Column="2" Content="Legacy Client" ToolTip="An older client used for some game editors. This should only be used by advanced users." IsChecked="{Binding LegacyGameClient}" />
             </Grid>
         </GroupBox>
         <GroupBox Margin="10 10 10 0" Grid.Row="3" Header="Installation Settings" IsEnabled="{Binding IsInstalling, Converter={StaticResource inverseConverter}}">

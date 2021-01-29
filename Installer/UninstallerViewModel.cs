@@ -35,6 +35,24 @@ namespace Installer
             }
         }
 
+        bool editor;
+        public bool Editor {
+            get => editor;
+            set {
+                editor = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        bool editorEnabled;
+        public bool EditorEnabled {
+            get => editorEnabled;
+            set {
+                editorEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
+
         bool legacyGameClient;
         public bool LegacyGameClient {
             get { return legacyGameClient; }
@@ -94,13 +112,14 @@ namespace Installer
                 UninstallComponent(ComponentDefinitions.LegacyClient); 
             }
 
-            if (!IsComponentInstalled(InstallationComponent.Client) && !IsComponentInstalled(InstallationComponent.LegacyClient)) {
+            if (!IsComponentInstalled(InstallationComponent.Client) && !IsComponentInstalled(InstallationComponent.Editor) && !IsComponentInstalled(InstallationComponent.LegacyClient)) {
                 RegistryTools.UnregisterInstallation("PMD: Shift!");
             }
 
             IsInstalling = false;
 
             GameClient = false;
+            Editor = false;
             LegacyGameClient = false;
 
             ValidateInstallerStatus();
@@ -136,9 +155,10 @@ namespace Installer
             var canInstall = true;
 
             GameClientEnabled = IsComponentInstalled(InstallationComponent.Client);
+            EditorEnabled = IsComponentInstalled(InstallationComponent.Editor);
             LegacyGameClientEnabled = IsComponentInstalled(InstallationComponent.LegacyClient);
 
-            if (!GameClient && !LegacyGameClient) {
+            if (!GameClient && !LegacyGameClient && !Editor) {
                 canInstall = false;
             }
 

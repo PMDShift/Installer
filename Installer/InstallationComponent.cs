@@ -9,6 +9,7 @@ namespace Installer
     public enum InstallationComponent
     {
         Client,
-        LegacyClient
+        LegacyClient,
+        Editor
     }
 }
